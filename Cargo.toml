@@ -1,0 +1,15 @@
+[package]
+name = "descartes"
+version = "0.1.0"
+authors = ["Nyeogmi <economicsbat@gmail.com>", "Frosh_VII <smith7@uchicago.edu>"]
+description = "euclid-compatible grid data structure (forked from Frosh_VII's gridd)"
+readme = "README.md"
+homepage = "https://github.com/nyeogmi/descartes"
+repository = "https://github.com/nyeogmi/descartes"
+license = "MIT OR Apache-2.0"
+keywords = ["2d", "grid", "2d-grid"]
+categories = ["data-structures"]
+edition = "2018"
+
+[dependencies]
+euclid = "0.22"
