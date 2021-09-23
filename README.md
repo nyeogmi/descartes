@@ -1,4 +1,4 @@
-# Descartes
+# gridd-euclid
 
 `euclid`-compatible grid data structure.
 

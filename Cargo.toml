@@ -1,5 +1,5 @@
 [package]
-name = "descartes"
+name = "gridd-euclid"
 version = "0.1.0"
 authors = ["Nyeogmi <economicsbat@gmail.com>", "Frosh_VII <smith7@uchicago.edu>"]
 description = "euclid-compatible grid data structure (forked from Frosh_VII's gridd)"
