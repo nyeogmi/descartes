@@ -1,7 +1,9 @@
 #![feature(type_alias_impl_trait)]
+mod endless_grid;
 mod grid;
 mod points_in;
 
+pub use endless_grid::EndlessGrid;
 pub use grid::Grid;
 pub use points_in::PointsIn;
 
