@@ -1,10 +1,11 @@
+use crate::PointsIn;
 use std::{collections::{BTreeMap}};
 
 // vendored from `gridd` package
 // rewritten to use euclid types
 // and rewritten to have a customizable rectangle boundary
 // and to remove some unnecessary helpers (ex: transpose(), square())
-use euclid::{Point2D, Rect, Size2D};
+use euclid::{Point2D, Rect, Size2D, point2};
 
 use crate::expanding_bounds::{ExpandingBounds};
 
@@ -29,6 +30,15 @@ impl<T: Copy, Space> CopyEndlessGrid<T, Space> {
             data: BTreeMap::new(), 
             default,
         }
+    }
+
+    pub fn iter(&self) -> impl '_+DoubleEndedIterator<Item=(Point2D<isize, Space>, T)> {
+        isize::points_in(self.rect()).map(move |p| (p, self.get(p)))
+    }
+
+    // iterate over _populated_ items, as opposed to untouched ones
+    pub fn iter_populated(&self) -> impl '_+DoubleEndedIterator<Item=(Point2D<isize, Space>, T)> {
+        self.data.iter().map(|((x, y), v)|( point2(*x, *y), *v))
     }
 
     pub fn contains(&self, p: Point2D<isize, Space>) -> bool {

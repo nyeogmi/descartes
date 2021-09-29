@@ -4,7 +4,7 @@ use std::{collections::{BTreeMap, btree_map::Entry}};
 // rewritten to use euclid types
 // and rewritten to have a customizable rectangle boundary
 // and to remove some unnecessary helpers (ex: transpose(), square())
-use euclid::{Point2D, Rect, Size2D};
+use euclid::{Point2D, Rect, Size2D, point2};
 
 use crate::expanding_bounds::{ExpandingBounds};
 
@@ -29,6 +29,15 @@ impl<T, Space> EndlessGrid<T, Space> {
             data: BTreeMap::new(), 
             default,
         }
+    }
+
+    // iterate over _populated_ items, as opposed to untouched ones
+    pub fn iter_populated(&self) -> impl '_+DoubleEndedIterator<Item=(Point2D<isize, Space>, &T)> {
+        self.data.iter().map(|((x, y), v)|( point2(*x, *y), v))
+    }
+
+    pub fn iter_mut_populated(&mut self) -> impl '_+DoubleEndedIterator<Item=(Point2D<isize, Space>, &mut T)> {
+        self.data.iter_mut().map(|((x, y), v)|( point2(*x, *y), v))
     }
 
     pub fn contains(&self, p: Point2D<isize, Space>) -> bool {
